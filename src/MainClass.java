@@ -2,6 +2,9 @@
 created by Maria L
  */
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class MainClass<T> {
 
     private T[] obj;
@@ -11,7 +14,15 @@ public class MainClass<T> {
         this.obj = obj;
     }
 
-    public void pintType(){
+    public T[] getObj() {
+        return obj;
+    }
+
+    public void showType(){
+        System.out.println("Тип Т: " + obj.getClass().getName());
+    }
+
+    public void printType(){
         for (int i = 0; i < obj.length; i++) {
             System.out.print(obj[i].toString()+" ");
         }
@@ -30,12 +41,19 @@ public class MainClass<T> {
         }
     }
 
+    //Написать метод, который преобразует массив в ArrayList
+    public void massToList(T[] arr){
+        ArrayList<T> list = new ArrayList<>();
+        Collections.addAll(list, arr);
+    }
+
     public static void main(String[] args) {
 
         MainClass<String> strObj = new MainClass<String>(new String[]{"s", "p","o","m"});
-        strObj.pintType();
+        strObj.printType();
         strObj.changePlace(0,3);
-        strObj.pintType();
+        strObj.printType();
+        strObj.showType();
 
         Animal[] animals = new Animal[]{
                 new Animal("cat"),
@@ -44,8 +62,14 @@ public class MainClass<T> {
                 new Animal("puma")
         };
         MainClass<Animal> animalObj = new MainClass<Animal>(animals);
-        animalObj.pintType();
+        animalObj.printType();
         animalObj.changePlace(3,1);
-        animalObj.pintType();
+        animalObj.printType();
+
+        animalObj.massToList(animals);
+        animalObj.showType();
+
+
+
     }
 }
